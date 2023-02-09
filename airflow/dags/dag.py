@@ -6,9 +6,9 @@ from pprint import pprint
 
 from airflow import DAG
 
-from airflow.operators.dummy_operator import DummyOperator
-from airflow.operators.python_operator import PythonOperator
-from airflow.contrib.operators.ecs_operator import ECSOperator
+from airflow.operators.dummy import DummyOperator
+from airflow.operators.python import PythonOperator
+from airflow.providers.amazon.aws.operators.ecs import EcsOperator
 
 DAG_NAME = 'Test_Dag'
 
@@ -80,9 +80,9 @@ dag = DAG( DAG_NAME,
 start_process = DummyOperator(task_id="start_process", dag=dag)
 
 # Following tasks will get triggered from worker and runs on OnDemand Fargate Task
-odd_task = ECSOperator(task_id="odd_task", **oddTask_args, dag=dag)
-even_task = ECSOperator(task_id="even_task", **evenTask_args, dag=dag)
-numbers_task = ECSOperator(task_id="numbers_task", **numbersTask_args, dag=dag)
+odd_task = EcsOperator(task_id="odd_task", **oddTask_args, dag=dag)
+even_task = EcsOperator(task_id="even_task", **evenTask_args, dag=dag)
+numbers_task = EcsOperator(task_id="numbers_task", **numbersTask_args, dag=dag)
 
 
 # [START howto_operator_python]

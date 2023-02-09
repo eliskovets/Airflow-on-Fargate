@@ -28,7 +28,7 @@ export class AirflowConstruct extends Construct {
     const adminPassword = uuidv4();
 
     const ENV_VAR = {
-      AIRFLOW__CORE__SQL_ALCHEMY_CONN: props.dbConnection,
+      AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: props.dbConnection,
       AIRFLOW__CELERY__BROKER_URL: "sqs://",
       AIRFLOW__CELERY__RESULT_BACKEND: "db+" + props.dbConnection,
       AIRFLOW__CORE__EXECUTOR: "CeleryExecutor",

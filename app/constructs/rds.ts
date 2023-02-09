@@ -60,7 +60,7 @@ export class RDSConstruct extends Construct {
 
     this.rdsInstance = new DatabaseInstance(this, "RDSInstance", {
       engine: DatabaseInstanceEngine.postgres({
-        version: PostgresEngineVersion.VER_12_4
+        version: PostgresEngineVersion.VER_12_10
       }),
       instanceType: defaultDBConfig.instanceType,
       instanceIdentifier: defaultDBConfig.dbName,
@@ -94,6 +94,6 @@ export class RDSConstruct extends Construct {
     endpoint: string,
     password: string
   ): string {
-    return `postgresql+pygresql://${dbConfig.masterUsername}:${password}@${endpoint}:${dbConfig.port}/${dbConfig.dbName}`;
+    return `postgresql://${dbConfig.masterUsername}:${password}@${endpoint}:${dbConfig.port}/${dbConfig.dbName}`;
   }
 }
